@@ -26,17 +26,15 @@ void handler(int signum)
 int main()
 {
     struct sigaction sa;
-    int pid = getpid();
+    int pid;
     
+    pid = getpid();
     printf("%d\n", pid);
-    
     sigemptyset(&sa.sa_mask);
     sa.sa_handler = handler;
     sa.sa_flags = SA_RESTART;
-    
     sigaction(SIGUSR1, &sa, NULL);
     sigaction(SIGUSR2, &sa, NULL);
-    
     while (1)
     {
         pause();
