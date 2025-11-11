@@ -1,9 +1,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-#include <stdio.h>
-
+#include "ft_printf/ft_printf.h"
 
 void send_char_as_bit(pid_t server_pid, char character)
 {
@@ -30,14 +28,14 @@ int main(int ac, char **av)
 	i = 0;
 	if (ac != 3)
 	{
-		printf("Usage: ./client <Server_pid> \"<Message>\"\n");
+		ft_printf("Usage: ./client <Server_pid> \"<Message>\"\n");
 		exit(EXIT_FAILURE);
 	}
 	server_pid = atoi(av[1]);
 	message_to_send = av[2];
 	if (server_pid <= 0)
 	{
-		printf("Invalid Server PID\n");
+		ft_printf("Invalid Server PID\n");
 		exit(EXIT_FAILURE);
 	}
 	while (message_to_send[i] != '\0')
@@ -46,6 +44,6 @@ int main(int ac, char **av)
 		i++;
 	}
 	send_char_as_bit(server_pid, '\0');
-	printf("Message sent successfully\n");
+	ft_printf("Message sent successfully\n");
 	return (0);
 }

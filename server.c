@@ -1,5 +1,5 @@
 #include <signal.h>
-#include <stdio.h>
+#include "ft_printf/ft_printf.h"
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -32,7 +32,7 @@ int main()
     printf("%d\n", pid);
     sigemptyset(&sa.sa_mask);
     sa.sa_handler = handler;
-    sa.sa_flags = SA_RESTART;
+    sa.sa_flags = 0;
     sigaction(SIGUSR1, &sa, NULL);
     sigaction(SIGUSR2, &sa, NULL);
     while (1)
